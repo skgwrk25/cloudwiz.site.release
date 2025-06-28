@@ -4,6 +4,27 @@
         <h1>Welcome to CloudWiz.UK</h1>
         <p>This is a placeholder page for the CloudWiz.UK website.</p>
         <p>More content will be added soon!</p>  
-        <p>copyright 2025 All rights </p>          
+        <p>copyright 2025 All rights </p>   
+        <button onclick="btnHello">Hello</button>       
     </BOdy>
+    <script>
+        function btnHello(){
+            var msg = "" ;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        msg =  "Latitude: " + position.coords.latitude + " " + "Longitude: " + position.coords.longitude ;
+                    },
+                    function(error) {
+                        msg = "Error Code = " + error.code + " - " + error.message ; 
+                    }
+                );
+            } else {
+                msg = "Geolocation is not supported by this browser."
+            }
+        }
+        console.log(msg);
+        alert(msg);
+
+    </script>
 </HTML>
