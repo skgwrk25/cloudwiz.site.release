@@ -6,12 +6,13 @@
         <p>More content will be added soon!</p>  
         <p>copyright 2025 All rights </p>   
         <button onclick="btnHello()">Hello</button>       
-    </BOdy>
+    </Body>
     <script>
-        function btnHello(){
-            var msg = "" ;
+        async function btnHello(){
+            alert("testing ")
+            var msg = "Geolocation is not supported by this browser" ;
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
+                const ret = await navigator.geolocation.getCurrentPosition(
                     function(position) {
                         msg =  "Latitude: " + position.coords.latitude + " " + "Longitude: " + position.coords.longitude ;
                     },
@@ -19,12 +20,13 @@
                         msg = "Error Code = " + error.code + " - " + error.message ; 
                     }
                 );
+                if ( msg == "" )
+                    msg = "Error Code = " + ret;
             } else {
                 msg = "Geolocation is not supported by this browser."
             }
             console.log(msg);
             alert(msg);
-
         }
 
     </script>
