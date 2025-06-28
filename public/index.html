@@ -5,29 +5,33 @@
         <p>This is a placeholder page for the CloudWiz.UK website.</p>
         <p>More content will be added soon!</p>  
         <p>copyright 2025 All rights </p>   
-        <button onclick="btnHello()">Hello</button>       
+        <button onclick="btnHello()">Hello</button>      
+        <a id="locationResult" target="_blank">Click on the button to find your location</a> 
     </Body>
     <script>
         async function btnHello(){
-            alert("testing ")
+            
             var msg = "Geolocation is not supported by this browser" ;
+            const locationResult = document.querySelector('#locationResult');
+            locationResult.textContent = 'Retrieving User Location...'
             if (navigator.geolocation) {
                 const ret = await navigator.geolocation.getCurrentPosition(
                     function(position) {
                         msg =  "Latitude: " + position.coords.latitude + " " + "Longitude: " + position.coords.longitude ;
+                        let { coords } = position;
+                        locationResult.textContent = 'See my location on a map';
+                        locationResult.href = `https://www.openstreetmap.org?mlat=${coords.latitude}&mlon=${coords.longitude}`;
+                        locationResult.textContent = msg ;
                     },
                     function(error) {
                         msg = "Error Code = " + error.code + " - " + error.message ; 
+                        locationResult.textContent = msg ;
                     }
                 );
-                if ( msg == "" )
-                    msg = "Error Code = " + ret;
             } else {
                 msg = "Geolocation is not supported by this browser."
+                locationResult.textContent = msg ;
             }
-            console.log(msg);
-            alert(msg);
         }
-
     </script>
 </HTML>
