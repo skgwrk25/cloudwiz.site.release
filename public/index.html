@@ -26,6 +26,11 @@
                     function(error) {
                         msg = "Error Code = " + error.code + " - " + error.message ; 
                         locationResult.textContent = msg ;
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 60000
                     }
                 );
             } else {
