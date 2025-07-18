@@ -1,42 +1,67 @@
-<HTML>
-    <head>CloudWiz.UK</head>
-    <Body>
-        <h1>Welcome to CloudWiz.UK</h1>
-        <p>This is a placeholder page for the CloudWiz.UK website.</p>
-        <p>More content will be added soon!</p>  
-        <p>copyright 2025 All rights </p>   
-        <button onclick="btnHello()">Hello</button>      
-        <a id="locationResult" target="_blank">Click on the button to find your location</a> 
-    </Body>
-    <script>
-        async function btnHello(){
-            
-            var msg = "Geolocation is not supported by this browser" ;
-            const locationResult = document.querySelector('#locationResult');
-            locationResult.textContent = 'Retrieving User Location...'
-            if (navigator.geolocation) {
-                const ret = await navigator.geolocation.getCurrentPosition(
-                    function(position) {
-                        msg =  "Latitude: " + position.coords.latitude + " " + "Longitude: " + position.coords.longitude ;
-                        let { coords } = position;
-                        locationResult.textContent = 'See my location on a map';
-                        locationResult.href = `https://www.openstreetmap.org?mlat=${coords.latitude}&mlon=${coords.longitude}`;
-                        locationResult.textContent = msg ;
-                    },
-                    function(error) {
-                        msg = "Error Code = " + error.code + " - " + error.message ; 
-                        locationResult.textContent = msg ;
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 10000,
-                        maximumAge: 60000
-                    }
-                );
-            } else {
-                msg = "Geolocation is not supported by this browser."
-                locationResult.textContent = msg ;
-            }
-        }
-    </script>
-</HTML>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stealth Startup</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #2e0249, #ff4ec4);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+.container {
+  max-width:600px;
+  padding: 2rem;
+  background: rgba(0,0,0,0.4);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+h2 {
+  font-weight: normal;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: #f1cfff;
+}
+p {
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.contact {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+}
+.contact a {
+  color: #fff;
+  text-decoration: underline;
+}
+footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #ddd;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <img src="cw_s1.png" style="width: 100%; height: 100%; " onclick="emailus.click();"/>
+    <div class="contact">
+      📧 <a id="emailus" href="mailto:contact@cloudwiz.uk?subject=Hello%20&body=I%20would%20love%20particiate%20contact%20me">contact@cloudwiz.uk</a>
+    </div>
+    <footer>
+      Currently operating in stealth mode.<br>
+      © 2025 Stealth Startup
+    </footer>
+  </div>
+</body>
+</html>
